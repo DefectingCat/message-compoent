@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { render } from 'react-dom';
 import { useImmer } from 'use-immer';
 import Message from './Message';
@@ -64,15 +64,14 @@ const MessageContainer: FC = () => {
 
   return (
     <>
-      <div className="message-container relative text-center">
+      <div className="relative text-center message-container">
         <AnimatePresence>
           {msgList.map((msg) => (
             <motion.div
               key={msg.id}
               variants={variants}
               animate="enter"
-              className="relative"
-              initial={{ opacity: 0 }}
+              className="relative opacity-0"
               exit="exit"
               layout="position"
             >
