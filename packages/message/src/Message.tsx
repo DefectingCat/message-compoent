@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { MsgType } from './index';
 import { FcInfo, FcOk, FcIdea, FcHighPriority } from 'react-icons/fc';
 
-interface Props {
+export interface MessageProps {
   type: MsgType;
   content: string;
 }
@@ -32,12 +32,12 @@ const validateIcon: {
   ),
 };
 
-const Message: FC<Props> = ({ type, content }) => {
+const Message: FC<MessageProps> = ({ type, content }) => {
   const Icon = validateIcon[type];
 
   return (
     <>
-      <div className="shadow-lg rounded-lg bg-white py-2 px-4 mt-4 inline-flex items-center">
+      <div className="inline-flex items-center px-4 py-2 mt-4 bg-white rounded-lg shadow-lg">
         <Icon />
         {content}
       </div>

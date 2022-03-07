@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { useImmer } from 'use-immer';
 import Message from './Message';
 import { motion, AnimatePresence, AnimationProps } from 'framer-motion';
+import './index.css';
 
 // export const enum MsgType {
 //   INFO = 'INFO',
@@ -13,7 +14,7 @@ import { motion, AnimatePresence, AnimationProps } from 'framer-motion';
 
 export type MsgType = 'INFO' | 'SUCESS' | 'WARN' | 'ERROR';
 
-type Msg = {
+export type Msg = {
   id: number;
   type: MsgType;
   content: string;
@@ -30,7 +31,7 @@ if (!el) {
   document.body.append(el);
 }
 
-let add: (msg: Msg) => void = (msg: Msg) => {};
+let add: (msg: Msg) => void = () => {};
 
 const variants: AnimationProps['variants'] = {
   enter: {
@@ -114,3 +115,4 @@ const message = {
 };
 
 export default message;
+export * from './Message';
