@@ -19,7 +19,7 @@ export default {
       sourcemap: true,
     },
   ],
-  external: [...Object.keys((pkg.peerDependencies && pkg.dependencies) || {})],
+  external: [...Object.keys(pkg.peerDependencies || {})],
   plugins: [
     nodeResolve(),
     commonjs(),
