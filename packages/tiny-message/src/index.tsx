@@ -36,12 +36,12 @@ let add: (msg: Msg) => void = () => {};
 const variants: AnimationProps['variants'] = {
   enter: {
     opacity: [0, 1],
-    top: [-66, 0],
+    y: [-66, 0],
     transition: { duration: 0.3 },
   },
   exit: {
     opacity: [1, 0],
-    top: [0, -66],
+    y: [0, -66],
     transition: { duration: 0.3 },
   },
 };
@@ -72,7 +72,7 @@ const MessageContainer: FC = () => {
               key={msg.id}
               variants={variants}
               animate="enter"
-              className="relative opacity-0"
+              className="opacity-0"
               exit="exit"
               layout="position"
             >
