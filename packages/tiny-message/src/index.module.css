@@ -1,0 +1,19 @@
+.message-wrapper {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: -10;
+  display: flex;
+  justify-content: center;
+}
+
+.message-container {
+  position: relative;
+  text-align: center;
+}
+
+.motion {
+  opacity: 0;
+}

@@ -31,15 +31,13 @@ export default {
         path: './postcss.config.js',
       },
       extensions: ['css'],
+      modules: true,
     }),
     postCSS({
       config: {
         path: './postcss.config.js',
       },
-      plugins: [
-        require('autoprefixer'),
-        require('tailwindcss')('./tailwind.config.js'),
-      ],
+      plugins: [require('autoprefixer')],
     }),
   ],
 };

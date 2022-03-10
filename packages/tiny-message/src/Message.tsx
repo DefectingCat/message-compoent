@@ -1,6 +1,7 @@
 import { FC, memo } from 'react';
 import { MsgType } from './index';
 import { FcInfo, FcOk, FcIdea, FcHighPriority } from 'react-icons/fc';
+import style from './message.module.css';
 
 export interface MessageProps {
   type: MsgType;
@@ -11,22 +12,22 @@ const validateIcon: {
   [key: string]: FC;
 } = {
   INFO: () => (
-    <div className="mr-2">
+    <div className={style.icon}>
       <FcInfo />
     </div>
   ),
   SUCESS: () => (
-    <div className="mr-2">
+    <div className={style.icon}>
       <FcOk />
     </div>
   ),
   WARN: () => (
-    <div className="mr-2">
+    <div className={style.icon}>
       <FcIdea />
     </div>
   ),
   ERROR: () => (
-    <div className="mr-2">
+    <div className={style.icon}>
       <FcHighPriority />
     </div>
   ),
@@ -37,7 +38,7 @@ const Message: FC<MessageProps> = ({ type, content }) => {
 
   return (
     <>
-      <div className="inline-flex items-center px-4 py-2 mt-4 bg-white rounded-lg shadow-lg">
+      <div className={style.message}>
         <Icon />
         {content}
       </div>

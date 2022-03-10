@@ -33,9 +33,7 @@
     "postcss": "^8.4.8",
     "rollup": "^2.70.0",
     "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-tailwindcss": "^1.0.0",
     "rollup-plugin-typescript2": "^0.31.2",
-    "tailwindcss": "^3.0.23",
     "typescript": "^4.6.2"
   },
   "gitHead": "05b2c7e162a90346616fe9dc342422e8ba339a2f"

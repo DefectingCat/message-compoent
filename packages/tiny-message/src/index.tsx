@@ -3,14 +3,7 @@ import { render } from 'react-dom';
 import { useImmer } from 'use-immer';
 import Message from './Message';
 import { motion, AnimatePresence, AnimationProps } from 'framer-motion';
-import './index.css';
-
-// export const enum MsgType {
-//   INFO = 'INFO',
-//   SUCESS = 'SUCESS',
-//   WARN = 'WARN',
-//   ERROR = 'ERROR',
-// }
+import style from './index.module.css';
 
 export type MsgType = 'INFO' | 'SUCESS' | 'WARN' | 'ERROR';
 
@@ -25,8 +18,7 @@ let el = document.querySelector('#message-wrapper');
 
 if (!el) {
   el = document.createElement('div');
-  el.className =
-    'message-wrapper fixed h-[100vh] w-[100vw] top-0 left-0 -z-10 flex justify-center';
+  el.className = `${style['message-wrapper']}`;
   el.id = 'message-wrapper';
   document.body.append(el);
 }
@@ -65,14 +57,14 @@ const MessageContainer: FC = () => {
 
   return (
     <>
-      <div className="relative text-center message-container">
+      <div className={`${style['message-container']}`}>
         <AnimatePresence>
           {msgList.map((msg) => (
             <motion.div
               key={msg.id}
               variants={variants}
               animate="enter"
-              className="opacity-0"
+              className={style.motion}
               exit="exit"
               layout="position"
             >
