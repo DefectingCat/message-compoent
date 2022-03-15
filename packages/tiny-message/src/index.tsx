@@ -4,11 +4,13 @@ import { useImmer } from 'use-immer';
 import Message from './Message';
 import { motion, AnimatePresence, AnimationProps } from 'framer-motion';
 import style from './index.module.css';
+import { enableMapSet } from 'immer';
+
+enableMapSet();
 
 export type MsgType = 'INFO' | 'SUCESS' | 'WARN' | 'ERROR';
 
 export type Msg = {
-  id: number;
   type: MsgType;
   content: string;
 };
@@ -39,17 +41,19 @@ const variants: AnimationProps['variants'] = {
 };
 
 const MessageContainer: FC = () => {
-  const [msgList, setMsgList] = useImmer<Msg[]>([]);
+  const [msgList, setMsgList] = useImmer<Map<number, Msg>>(new Map());
 
   add = (msg) => {
     setMsgList((list) => {
-      list.push(msg);
+      const id = new Date().getTime();
+      list.set(id, msg);
 
-      if (list.length > 10) list.shift();
+      const arr = Array.from(list);
+      if (arr.length > 10) list.delete(arr[0][0]);
 
       setTimeout(() => {
         setMsgList((list) => {
-          list.shift();
+          list.delete(id);
         });
       }, 3000);
     });
@@ -59,16 +63,16 @@ const MessageContainer: FC = () => {
     <>
       <div className={`${style['message-container']}`}>
         <AnimatePresence>
-          {msgList.map((msg) => (
+          {Array.from(msgList).map((list) => (
             <motion.div
-              key={msg.id}
+              key={list[0]}
               variants={variants}
               animate="enter"
               className={style.motion}
               exit="exit"
               layout="position"
             >
-              <Message type={msg.type} content={msg.content} />
+              <Message type={list[1].type} content={list[1].content} />
             </motion.div>
           ))}
         </AnimatePresence>
@@ -82,25 +86,21 @@ render(<MessageContainer />, el);
 const message = {
   info: (content: string) =>
     add({
-      id: new Date().getTime(),
       type: 'INFO',
       content,
     }),
   sucess: (content: string) =>
     add({
-      id: new Date().getTime(),
       type: 'SUCESS',
       content,
     }),
   warn: (content: string) =>
     add({
-      id: new Date().getTime(),
       type: 'WARN',
       content,
     }),
   error: (content: string) =>
     add({
-      id: new Date().getTime(),
       type: 'ERROR',
       content,
     }),
